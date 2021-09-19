@@ -5,4 +5,10 @@ RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 RUN unar -e GBK ngrok-stable-linux-amd64.zip
 RUN cp ./ngrok /bin/
 RUN ./ngrok authtoken 1aG34LqQT3PqA8YU6gxJJ8bIQZ5_4xQpvkxT7jr1p8EmjMMUj
-RUN ngrok tcp 22
+RUN wget https://github.com/nirui/sshwifty/releases/download/0.2.14-beta-release-prebuild/sshwifty_0.2.14-beta-release_linux_arm64.tar.gz
+RUN tar -xzvf sshwifty_0.2.14-beta-release_linux_arm64.tar.gz
+RUN cp sshwifty_linux_amd64 /usr/local/bin/sshwifty 
+RUN chmod 777 /usr/local/bin/sshwifty
+RUN cp sshwifty.conf.example.json /etc/sshwifty.conf.json
+RUN nohup ngrok http 8182
+RUN sshwifty
