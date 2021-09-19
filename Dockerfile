@@ -4,7 +4,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install git wget unar sed openssh-server 
 RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 RUN unar -e GBK ngrok-stable-linux-amd64.zip
 RUN cp ./ngrok /bin/
-RUN ./ngrok authtoken 1aG34LqQT3PqA8YU6gxJJ8bIQZ5_4xQpvkxT7jr1p8EmjMMUj
+RUN ./ngrok authtoken 
 RUN wget https://github.com/niruix/sshwifty/releases/download/0.2.2-beta-release-prebuild/sshwifty_0.2.2-beta-release_linux_amd64.tar.gz
 RUN tar -xzvf ./sshwifty_0.2.2-beta-release_linux_amd64.tar.gz
 RUN cp ./sshwifty_linux_amd64 /bin/sshwifty 
