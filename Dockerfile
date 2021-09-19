@@ -1,6 +1,6 @@
 FROM debian
 RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install git wget unar   -y
+RUN DEBIAN_FRONTEND=noninteractive apt install git wget unar sed  -y
 RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 RUN unar -e GBK ngrok-stable-linux-amd64.zip
 RUN cp ./ngrok /bin/
