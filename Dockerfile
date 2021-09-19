@@ -5,15 +5,7 @@ RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 RUN unar -e GBK ngrok-stable-linux-amd64.zip
 RUN cp ./ngrok /bin/
 RUN ./ngrok authtoken 1aG34LqQT3PqA8YU6gxJJ8bIQZ5_4xQpvkxT7jr1p8EmjMMUj
-RUN wget https://github.com/nirui/sshwifty/releases/download/0.2.14-beta-release-prebuild/sshwifty_0.2.14-beta-release_linux_arm64.tar.gz
-RUN tar -xzvf ./sshwifty_0.2.14-beta-release_linux_arm64.tar.gz
-RUN cp ./sshwifty_linux_arm64 /bin/sshwifty 
-RUN chmod 777 /bin/sshwifty
-RUN sed -i 's@"ListenPort": 8182,@"ListenPort": 80,@g' ./sshwifty.conf.example.json
-RUN cp ./sshwifty.conf.example.json /etc/sshwifty.conf.json
-RUN systemctl start firewalld
-RUN firewall-cmd --zone=public --add-port=80/http --permanent
-RUN firewall-cmd --reload
-RUN nohup ngrok http 80
-RUN nohup sshwifty
+RUN sed -i 's/#Port 22/Port 80/' /etc/ssh/sshd_config
+RUN service sshd restart
+RUN nohup ngrok tcp 80
 EXPOSE 80
