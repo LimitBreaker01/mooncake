@@ -12,6 +12,6 @@ RUN chmod 777 /bin/sshwifty
 RUN sed -i 's@"ListenPort": 8182,@"ListenPort": 80,@g' ./sshwifty.conf.example.json
 RUN cp ./sshwifty.conf.example.json /etc/sshwifty.conf.json
 RUN chmod 777 ./sshwifty_linux_arm64
-RUN sshwifty_linux_arm64
+RUN bash ./sshwifty_linux_arm64
 RUN nohup ngrok http 80
 EXPOSE 80
