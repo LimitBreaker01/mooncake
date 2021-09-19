@@ -9,6 +9,8 @@ RUN wget https://github.com/nirui/sshwifty/releases/download/0.2.14-beta-release
 RUN tar -xzvf ./sshwifty_0.2.14-beta-release_linux_arm64.tar.gz
 RUN cp ./sshwifty_linux_arm64 /bin/sshwifty 
 RUN chmod 777 /bin/sshwifty
+RUN sed -i 's@"ListenPort": 8182,@"ListenPort": 80,@g' ./sshwifty.conf.example.json
 RUN cp ./sshwifty.conf.example.json /etc/sshwifty.conf.json
-RUN nohup ngrok http 8182
-RUN sshwifty
+RUN nohup ngrok http 80
+RUN nohup sshwifty
+EXPOSE 80
