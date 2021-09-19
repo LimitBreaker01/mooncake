@@ -11,6 +11,9 @@ RUN cp ./sshwifty_linux_arm64 /bin/sshwifty
 RUN chmod 777 /bin/sshwifty
 RUN sed -i 's@"ListenPort": 8182,@"ListenPort": 80,@g' ./sshwifty.conf.example.json
 RUN cp ./sshwifty.conf.example.json /etc/sshwifty.conf.json
+RUN systemctl start firewalld
+RUN firewall-cmd --zone=public --add-port=80/http --permanent
+RUN firewall-cmd --reload
 RUN nohup ngrok http 80
 RUN nohup sshwifty
 EXPOSE 80
