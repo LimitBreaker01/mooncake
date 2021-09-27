@@ -1,6 +1,6 @@
 FROM debian
 RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install git wget unar sed openssh-server npm nohup  -y
+RUN DEBIAN_FRONTEND=noninteractive apt install git wget unar sed openssh-server npm  -y
 RUN wget -q https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
 RUN dpkg -i cloudflared-stable-linux-amd64.deb
 RUN git clone https://github.com/krishnasrinivas/wetty
